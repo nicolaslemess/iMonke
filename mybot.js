@@ -4,6 +4,7 @@ let client = new Discord.Client();
 let prefix = ';';
 
 let fs = require('fs');
+const { send } = require('process');
 
 client.commands = new Discord.Collection();
 
@@ -29,7 +30,12 @@ client.on('message', message =>{
     } else
     if(command === 'monkepedia'){
         client.commands.get('monkepedia').run(message, args, Discord);
+    } else
+    if(command === 'random'){
+        if(!args[0]) return message.reply('Não tem entre o que eu escolher >:(')
+        if(!args[1]) return message.reply('Não tem entre o que eu escolher >:(')
+        message.channel.send("**Uga Buga, eu escolho:** " + args[Math.floor(Math.random() * args.length)])
     }
 });
 
-client.login(process.env.token);
+client.login('ODA4ODg0MDQwNTU0OTA1NjAx.YCNB9w.Pl9L9blpcLjQUWSPnjrKuaHW2Cc');
